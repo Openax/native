@@ -7,9 +7,11 @@
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
+    "assetBundlePatterns": ["assets/images/*"],
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+
     "ios": {
       "supportsTablet": true
     }

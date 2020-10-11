@@ -1,13 +1,22 @@
-import React, { Component } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
+import React, { useState, useEffect } from "react";
+import SyncStorage from "sync-storage";
 
 function MaterialHelperTextBox(props) {
+  const [inputA, setInputA] = useState("Login");
+
+  let onChangeTextFuncA = (text) => {
+    console.log("TEXT_CHANGED_A", text);
+    setInputA(text);
+    SyncStorage.set("fooA", text);
+  };
+
   return (
     <View style={[styles.container, props.style]}>
-      <Text style={styles.label}>StackedLabel</Text>
+      <Text style={styles.label}>{props.label || "StackedLabel"}</Text>
       <TextInput
-        value={props.value}
-        placeholder="Input"
+        onChangeText={(text) => onChangeTextFuncA(text)}
+        placeholder={props.inputStyle || "Input"}
         style={styles.inputStyle}
       ></TextInput>
       <Text style={styles.helper}>Helper text</Text>
