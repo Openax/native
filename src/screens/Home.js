@@ -10,7 +10,7 @@ import HalfButton from "../components/HalfButton";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
-function Home(props) {
+function Home({ navigation }) {
   const listOfitems = [
     {
       name: "Sony Playstation",
@@ -59,7 +59,10 @@ function Home(props) {
 
   return (
     <View style={styles.container}>
-      <Navigation style={styles.navigation}></Navigation>
+      <Navigation
+        navigation={navigation}
+        style={styles.navigation}
+      ></Navigation>
       <Text style={styles.heySteve}>Hey Steve!</Text>
       <View style={styles.account4ColumnRow}>
         <View style={styles.account4Column}>

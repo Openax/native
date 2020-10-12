@@ -1,17 +1,152 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import React, { Component, useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import SmallFlatButton from "../components/SmallFlatButton";
-import Svg, { Ellipse } from "react-native-svg";
 import List from "../components/homePageComponents/List";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import Pagination from "../components/Pagination";
 import Navigation from "../components/Navigation";
+import Swiper from "react-native-swiper";
 
-function Stats(props) {
+const SliderComponent = (props) => {
+  const styles = StyleSheet.create({
+    wrapper: {
+      paddingTop: 0,
+      height: 240,
+    },
+    slide1: {
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#9DD6EB",
+    },
+    icon7: {
+      top: 2,
+      left: 2,
+      position: "absolute",
+      color: "rgba(36,108,166,1)",
+      fontSize: 30,
+      height: 33,
+      width: 30,
+    },
+    slide2: {
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#97CAE5",
+    },
+    slide3: {
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#92BBD9",
+    },
+    text: {
+      color: "#fff",
+      fontSize: 30,
+      fontWeight: "bold",
+    },
+  });
+
+  return (
+    <Swiper
+      style={styles.wrapper}
+      paginationStyle={{ marginTop: 0, paddingTop: 0 }}
+      loop={false}
+    >
+      <View style={{ marginTop: 10 }}>{props.children}</View>
+      <View style={{ marginTop: 10 }}>{props.children}</View>
+      <View style={{ marginTop: 10 }}>{props.children}</View>
+    </Swiper>
+  );
+};
+
+function Stats({ navigation }) {
+  const [selectedValueBtn, setSelectedValueBtn] = useState("week");
+
+  const weekExpenses = [
+    {
+      name: "Mycrosoft Xbox",
+      date: "15/09/2020",
+    },
+    {
+      name: "Mycrosoft Xbox",
+      date: "15/09/2020",
+    },
+    {
+      name: "Mycrosoft Xbox",
+      date: "15/09/2020",
+    },
+    {
+      name: "Mycrosoft Xbox",
+      date: "15/09/2020",
+    },
+    {
+      name: "Mycrosoft Xbox",
+      date: "15/09/2020",
+    },
+  ];
+
+  let weekExpensesItems = weekExpenses.map((item, index) => {
+    return (
+      <View style={styles.list1Stack}>
+        <List
+          key={index.toString()}
+          name2="Mycrosoft Xbox"
+          ddMmYyyy2="15/09/2020"
+          style={styles.list1}
+        ></List>
+        <IoniconsIcon name="logo-xbox" style={styles.icon4}></IoniconsIcon>
+      </View>
+    );
+  });
+
+  let monthExpensesItems = weekExpenses.map((item, index) => {
+    return (
+      <View style={styles.list1Stack}>
+        <List
+          key={index.toString()}
+          name2="Mycrosoft Xbox"
+          ddMmYyyy2="15/09/2020"
+          style={styles.list1}
+        ></List>
+        <IoniconsIcon name="logo-xbox" style={styles.icon4}></IoniconsIcon>
+      </View>
+    );
+  });
+
+  let yearExpensesItems = weekExpenses.map((item, index) => {
+    return (
+      <View style={styles.list1Stack}>
+        <List
+          key={index.toString()}
+          name2="Mycrosoft Xbox"
+          ddMmYyyy2="15/09/2020"
+          style={styles.list1}
+        ></List>
+        <IoniconsIcon name="logo-xbox" style={styles.icon4}></IoniconsIcon>
+      </View>
+    );
+  });
+
+  let feturedExpenses = weekExpenses.map((item, index) => {
+    return (
+      <View style={styles.list1Stack}>
+        <List
+          key={index.toString()}
+          name2="Mycrosoft Xbox"
+          ddMmYyyy2="15/09/2020"
+          style={styles.list1}
+        ></List>
+        <IoniconsIcon name="logo-xbox" style={styles.icon4}></IoniconsIcon>
+      </View>
+    );
+  });
+
   return (
     <View style={styles.container}>
+      {/* Title balance  */}
       <View style={styles.rect}>
         <View style={styles.thisWeekColumnRow}>
           <View style={styles.thisWeekColumn}>
@@ -28,310 +163,73 @@ function Stats(props) {
             <Text style={styles.loremIpsum}>15,942.26</Text>
           </View>
         </View>
+
+        {/* BUTTONS BALANCE DATA */}
         <View style={styles.smallFlatButtonRow}>
-          <SmallFlatButton
-            button="Button"
-            button="Week"
-            style={styles.smallFlatButton}
-          ></SmallFlatButton>
-          <SmallFlatButton
-            button="Month"
-            style={styles.smallFlatButton2}
-          ></SmallFlatButton>
-          <SmallFlatButton
-            button="Year"
-            style={styles.smallFlatButton3}
-          ></SmallFlatButton>
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedValueBtn("week");
+            }}
+          >
+            <SmallFlatButton
+              button="Week"
+              style={
+                selectedValueBtn == "week"
+                  ? styles.smallFlatButtonActive
+                  : styles.smallFlatButtonDisactive
+              }
+            ></SmallFlatButton>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedValueBtn("month");
+            }}
+          >
+            <SmallFlatButton
+              button="Month"
+              style={
+                selectedValueBtn == "month"
+                  ? styles.smallFlatButtonActive
+                  : styles.smallFlatButtonDisactive
+              }
+            ></SmallFlatButton>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedValueBtn("year");
+            }}
+          >
+            <SmallFlatButton
+              button="Year"
+              style={
+                selectedValueBtn == "year"
+                  ? styles.smallFlatButtonActive
+                  : styles.smallFlatButtonDisactive
+              }
+            ></SmallFlatButton>
+          </TouchableOpacity>
         </View>
-        <Svg viewBox="0 0 5.29 5.29" style={styles.ellipse}>
-          <Ellipse
-            strokeWidth={0}
-            fill="rgba(255,255,255,1)"
-            cx={3}
-            cy={3}
-            rx={3}
-            ry={3}
-          ></Ellipse>
-        </Svg>
       </View>
+
       <Text style={styles.featuredExpenses}>Featured Expenses</Text>
-      <View style={styles.scrollArea1}>
-        <ScrollView
-          horizontal={false}
-          contentContainerStyle={styles.scrollArea1_contentContainerStyle}
-        >
-          <View style={styles.list1Stack}>
-            <List
-              name2="Mycrosoft Xbox"
-              ddMmYyyy2="15/09/2020"
-              style={styles.list1}
-            ></List>
-            <IoniconsIcon name="logo-xbox" style={styles.icon4}></IoniconsIcon>
-          </View>
-          <View style={styles.list2Stack}>
-            <List
-              name2="Spotify"
-              ddMmYyyy2="15/09/2020"
-              loremIpsum3="-$ 108.93"
-              style={styles.list2}
-            ></List>
-            <EntypoIcon name="spotify" style={styles.icon3}></EntypoIcon>
-          </View>
-          <View style={styles.list3Stack}>
-            <List
-              name2="Paypal"
-              ddMmYyyy2="12/09/2020"
-              style={styles.list3}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="paypal"
-              style={styles.icon5}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list4Stack}>
-            <List
-              name2="Sony Playstation"
-              ddMmYyyy2="08/09/2020"
-              loremIpsum3="+ $ 300.67"
-              style={styles.list4}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="playstation"
-              style={styles.icon2}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list5Stack}>
-            <List
-              name2="Apple"
-              ddMmYyyy2="02/09/2020"
-              style={styles.list5}
-            ></List>
-            <EntypoIcon name="app-store" style={styles.icon1}></EntypoIcon>
-          </View>
-          <View style={styles.list6Stack}>
-            <List
-              name2="Mycrosoft Xbox"
-              ddMmYyyy2="30/08/2020"
-              style={styles.list6}
-            ></List>
-            <IoniconsIcon name="logo-xbox" style={styles.icon6}></IoniconsIcon>
-          </View>
-          <View style={styles.list7Stack}>
-            <List
-              name2="Sony Playstation"
-              ddMmYyyy2="27/08/2020"
-              style={styles.list7}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="playstation"
-              style={styles.icon7}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list8Stack}>
-            <List
-              name2="Spotify"
-              ddMmYyyy2="24/08/2020"
-              style={styles.list8}
-            ></List>
-            <EntypoIcon name="spotify" style={styles.icon8}></EntypoIcon>
-          </View>
-          <View style={styles.list9Stack}>
-            <List
-              name2="Apple"
-              ddMmYyyy2="19/08/2020"
-              style={styles.list9}
-            ></List>
-            <EntypoIcon name="app-store" style={styles.icon9}></EntypoIcon>
-          </View>
-          <View style={styles.list11Stack}>
-            <List
-              name2="Mycrosoft Xbox"
-              ddMmYyyy2="12/08/2020"
-              style={styles.list11}
-            ></List>
-            <IoniconsIcon name="logo-xbox" style={styles.icon10}></IoniconsIcon>
-          </View>
-          <View style={styles.list10Stack}>
-            <List
-              name2="Spotify"
-              ddMmYyyy2="08/08/2020"
-              style={styles.list10}
-            ></List>
-            <EntypoIcon name="spotify" style={styles.icon11}></EntypoIcon>
-          </View>
-          <View style={styles.list12Stack}>
-            <List
-              name2="Apple"
-              ddMmYyyy2="01/08/2020"
-              style={styles.list12}
-            ></List>
-            <EntypoIcon name="app-store" style={styles.icon13}></EntypoIcon>
-          </View>
-          <View style={styles.list13Stack}>
-            <List
-              name2="Paypal"
-              ddMmYyyy2="26/07/2020"
-              style={styles.list13}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="paypal"
-              style={styles.icon12}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list14Stack}>
-            <List
-              name2="Sony Playstation"
-              ddMmYyyy2="21/07/2020"
-              loremIpsum3="+$ 239.00"
-              style={styles.list14}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="playstation"
-              style={styles.icon14}
-            ></MaterialCommunityIconsIcon>
-          </View>
-        </ScrollView>
-      </View>
-      <Pagination style={styles.pagination}></Pagination>
+
+      {/* SLIDER */}
+
+      <SliderComponent>{feturedExpenses}</SliderComponent>
+      <Text style={styles.weekExpenses}>Week Expenses</Text>
       <View style={styles.group}>
         <ScrollView
           horizontal={false}
           contentContainerStyle={styles.group_contentContainerStyle}
         >
-          <View style={styles.list15Stack}>
-            <List
-              name2="Mycrosoft Xbox"
-              ddMmYyyy2="15/09/2020"
-              style={styles.list15}
-            ></List>
-            <IoniconsIcon name="logo-xbox" style={styles.icon18}></IoniconsIcon>
-          </View>
-          <View style={styles.list16Stack}>
-            <List
-              name2="Spotify"
-              ddMmYyyy2="15/09/2020"
-              loremIpsum3="-$ 108.93"
-              style={styles.list16}
-            ></List>
-            <EntypoIcon name="spotify" style={styles.icon17}></EntypoIcon>
-          </View>
-          <View style={styles.list17Stack}>
-            <List
-              name2="Paypal"
-              ddMmYyyy2="12/09/2020"
-              style={styles.list17}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="paypal"
-              style={styles.icon19}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list18Stack}>
-            <List
-              name2="Sony Playstation"
-              ddMmYyyy2="08/09/2020"
-              loremIpsum3="+ $ 300.67"
-              style={styles.list18}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="playstation"
-              style={styles.icon16}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list19Stack}>
-            <List
-              name2="Apple"
-              ddMmYyyy2="02/09/2020"
-              style={styles.list19}
-            ></List>
-            <EntypoIcon name="app-store" style={styles.icon15}></EntypoIcon>
-          </View>
-          <View style={styles.list20Stack}>
-            <List
-              name2="Mycrosoft Xbox"
-              ddMmYyyy2="30/08/2020"
-              style={styles.list20}
-            ></List>
-            <IoniconsIcon name="logo-xbox" style={styles.icon20}></IoniconsIcon>
-          </View>
-          <View style={styles.list21Stack}>
-            <List
-              name2="Sony Playstation"
-              ddMmYyyy2="27/08/2020"
-              style={styles.list21}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="playstation"
-              style={styles.icon21}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list22Stack}>
-            <List
-              name2="Spotify"
-              ddMmYyyy2="24/08/2020"
-              style={styles.list22}
-            ></List>
-            <EntypoIcon name="spotify" style={styles.icon22}></EntypoIcon>
-          </View>
-          <View style={styles.list23Stack}>
-            <List
-              name2="Apple"
-              ddMmYyyy2="19/08/2020"
-              style={styles.list23}
-            ></List>
-            <EntypoIcon name="app-store" style={styles.icon23}></EntypoIcon>
-          </View>
-          <View style={styles.list25Stack}>
-            <List
-              name2="Mycrosoft Xbox"
-              ddMmYyyy2="12/08/2020"
-              style={styles.list25}
-            ></List>
-            <IoniconsIcon name="logo-xbox" style={styles.icon24}></IoniconsIcon>
-          </View>
-          <View style={styles.list24Stack}>
-            <List
-              name2="Spotify"
-              ddMmYyyy2="08/08/2020"
-              style={styles.list24}
-            ></List>
-            <EntypoIcon name="spotify" style={styles.icon25}></EntypoIcon>
-          </View>
-          <View style={styles.list26Stack}>
-            <List
-              name2="Apple"
-              ddMmYyyy2="01/08/2020"
-              style={styles.list26}
-            ></List>
-            <EntypoIcon name="app-store" style={styles.icon27}></EntypoIcon>
-          </View>
-          <View style={styles.list27Stack}>
-            <List
-              name2="Paypal"
-              ddMmYyyy2="26/07/2020"
-              style={styles.list27}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="paypal"
-              style={styles.icon26}
-            ></MaterialCommunityIconsIcon>
-          </View>
-          <View style={styles.list28Stack}>
-            <List
-              name2="Sony Playstation"
-              ddMmYyyy2="21/07/2020"
-              loremIpsum3="+$ 239.00"
-              style={styles.list28}
-            ></List>
-            <MaterialCommunityIconsIcon
-              name="playstation"
-              style={styles.icon28}
-            ></MaterialCommunityIconsIcon>
-          </View>
+          {weekExpensesItems}
         </ScrollView>
       </View>
-      <Navigation style={styles.navigation}></Navigation>
-      <Text style={styles.weekExpenses}>Week Expenses</Text>
+      <Navigation
+        navigation={navigation}
+        style={styles.navigation}
+      ></Navigation>
     </View>
   );
 }
@@ -341,7 +239,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rect: {
-    width: 375,
+    width: "99%",
+    alignSelf: "center",
     height: 216,
     backgroundColor: "rgba(36,108,166,1)",
   },
@@ -402,7 +301,7 @@ const styles = StyleSheet.create({
   loremIpsum: {
     fontFamily: "poppins-700",
     color: "rgba(255,255,255,1)",
-    fontSize: 30,
+    fontSize: 20,
     marginTop: 14,
   },
   balanceColumn: {
@@ -414,23 +313,19 @@ const styles = StyleSheet.create({
     height: 77,
     flexDirection: "row",
     marginTop: 60,
-    marginLeft: 20,
-    marginRight: 20,
+    width: "99%",
+    alignSelf: "center",
   },
-  smallFlatButton: {
+  smallFlatButtonActive: {
     height: 36,
     width: 125,
   },
-  smallFlatButton2: {
-    width: 125,
-    height: 36,
-    opacity: 0.5,
-  },
-  smallFlatButton3: {
+  smallFlatButtonDisactive: {
     width: 125,
     height: 36,
     opacity: 0.5,
   },
+
   smallFlatButtonRow: {
     height: 36,
     flexDirection: "row",
@@ -446,7 +341,7 @@ const styles = StyleSheet.create({
     color: "rgba(49,49,49,1)",
     fontSize: 16,
     opacity: 0.5,
-    marginTop: 8,
+
     marginLeft: 20,
   },
   scrollArea1: {
@@ -730,10 +625,7 @@ const styles = StyleSheet.create({
     marginLeft: 163,
   },
   group: {
-    width: 335,
-    height: 259,
-    marginTop: 72,
-    marginLeft: 20,
+    flex: 0.5,
   },
   group_contentContainerStyle: {
     height: 718,
@@ -1014,7 +906,6 @@ const styles = StyleSheet.create({
     color: "rgba(49,49,49,1)",
     fontSize: 16,
     opacity: 0.5,
-    marginTop: -399,
     marginLeft: 20,
   },
 });

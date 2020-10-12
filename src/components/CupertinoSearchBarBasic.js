@@ -9,8 +9,8 @@ function CupertinoSearchBarBasic(props) {
         style={[
           styles.inputBox,
           {
-            backgroundColor: props.inputBox || "#EFEFF4"
-          }
+            backgroundColor: props.inputBox || "#EFEFF4",
+          },
         ]}
       >
         <Icon name="magnify" style={styles.inputLeftIcon}></Icon>
@@ -24,31 +24,31 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 8
+    padding: 8,
   },
   inputBox: {
     flex: 1,
     flexDirection: "row",
     borderRadius: 5,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   inputLeftIcon: {
     color: "#000",
     fontSize: 20,
     alignSelf: "center",
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
   },
   inputStyle: {
-    height: 32,
+    height: 42,
     alignSelf: "flex-start",
     fontSize: 15,
     fontFamily: "poppins-regular",
     lineHeight: 15,
     color: "rgba(49,49,49,1)",
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default CupertinoSearchBarBasic;

@@ -5,6 +5,7 @@ function MaterialUnderlineTextbox(props) {
   return (
     <View style={[styles.container, props.style]}>
       <TextInput
+        maxLength={1}
         placeholder={props.inputStyle || "   "}
         style={styles.inputStyle}
       ></TextInput>

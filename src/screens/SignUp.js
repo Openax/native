@@ -10,9 +10,10 @@ import MaterialButtonWithVioletText3 from "../components/MaterialButtonWithViole
 import WizzardSignUp from "../components/formicComponent/WizzardSignUp";
 
 function SignUp({ navigation }) {
+  console.log("NAVIGATION_SIGN_IN", navigation);
   return (
     <View style={styles.container}>
-      <WizzardSignUp></WizzardSignUp>
+      <WizzardSignUp navigation={navigation}></WizzardSignUp>
     </View>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { createDrawerNavigator } from "react-navigation-drawer";
 import { AppLoading } from "expo";
 
 import * as Font from "expo-font";
@@ -10,7 +9,7 @@ import SignUp from "./src/screens/SignUp";
 import Accounttype from "./src/screens/Accounttype";
 import Email from "./src/screens/Email";
 import Home from "./src/screens/Home";
-import LogIn from "./src/screens/LogIn";
+import AccountPage from "./src/screens/AccountPage";
 import Notifications from "./src/screens/Notifications";
 import Stats from "./src/screens/Stats";
 import Verifycode from "./src/screens/Verifycode";
@@ -24,6 +23,9 @@ const StackNavigation = createStackNavigator(
     SignUp: SignUp,
     LogIn: Account,
     Home: Home,
+    Notifications: Notifications,
+    Stats: Stats,
+    Account: AccountPage,
     // Accounttype: Accounttype,
     // Email: Email,
     // Home: Home,
@@ -35,7 +37,7 @@ const StackNavigation = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "LogIn",
+    initialRouteName: "Account",
   }
 );
 

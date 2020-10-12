@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,1)",
     textAlign: "center",
     marginTop: 7,
-    marginLeft: 54,
+    // marginLeft: 54,
   },
 });
 
